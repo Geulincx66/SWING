@@ -1,0 +1,42 @@
+import java.awt.BorderLayout;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class PrzyciskiZAkcja implements ActionListener{
+	JFrame ramka;
+	JButton witajButton;
+	JButton zegnajButton;
+ 
+	public static void main(String[] args) {
+		PrzyciskiZAkcja przyciski = new PrzyciskiZAkcja();
+		przyciski.zbudujGUI();
+	}
+ 
+	public void zbudujGUI() {
+		ramka = new JFrame();
+		ramka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ramka.setSize(400, 300);
+		witajButton = new JButton("Witaj");
+		zegnajButton = new JButton("¯egnaj");
+ 
+		// dodajemy do przycisków ActionListener
+		witajButton.addActionListener(this);
+		zegnajButton.addActionListener(this);
+ 
+		ramka.getContentPane().add(BorderLayout.WEST, witajButton);
+		ramka.getContentPane().add(BorderLayout.EAST, zegnajButton);
+		ramka.setVisible(true);
+	}
+ 
+	public void actionPerformed(ActionEvent akcja) {
+		// metoda obs³uguj¹ca akcje
+		if (akcja.getSource() == witajButton)
+			System.out.println("Witaj robaczku!");
+		else if (akcja.getSource() == zegnajButton)
+			System.out.println("¯egnaj robaczku!");
+		else
+			// to siê nie powinno wydarzyæ ;-)
+			System.out.println("Skontaktowali siê ze mn¹ kosmici");
+	}
+ 
+}
